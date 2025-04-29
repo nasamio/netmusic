@@ -21,17 +21,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val darkTheme  = Settings.isLightMode.collectAsState()
+            val darkTheme = Settings.isLightMode.collectAsState()
             NetmusicTheme(
                 darkTheme = darkTheme.value
             ) {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-
-                        Main()
-                }
+                Main()
             }
         }
     }
