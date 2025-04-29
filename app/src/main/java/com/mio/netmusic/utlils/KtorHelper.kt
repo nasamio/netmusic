@@ -3,6 +3,7 @@ package com.mio.netmusic.utlils
 import LogUtils
 import com.mio.netmusic.bean.BaseResponse
 import com.mio.netmusic.bean.LoginData
+import com.mio.netmusic.bean.PlayListResponse
 import com.mio.netmusic.bean.QrCheck
 import com.mio.netmusic.bean.QrImg
 import com.mio.netmusic.bean.QrKey
@@ -143,6 +144,15 @@ object KtorHelper {
     suspend fun loginStatus() = get<BaseResponse<LoginData>>(
         url = "/login/status",
         params = mapOf(
+            "timestamp" to System.currentTimeMillis().toString(),
+            "cookie" to App.cookie.value,
+        ),
+    )
+
+   suspend fun playlist(userId: Long?)  = get<PlayListResponse>(
+        url = "/user/playlist",
+        params = mapOf(
+            "uid" to userId.toString(),
             "timestamp" to System.currentTimeMillis().toString(),
             "cookie" to App.cookie.value,
         ),

@@ -42,7 +42,6 @@ fun MinePage(
     val profile = App.profile.value ?: return
 
     val url = profile.avatarUrl
-    LogUtils.d("url:$url")
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(

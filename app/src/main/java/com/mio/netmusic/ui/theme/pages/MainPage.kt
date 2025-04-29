@@ -1,7 +1,6 @@
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,7 +29,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mio.netmusic.ui.theme.Page
-import com.mio.netmusic.ui.theme.pages.InnerHomePage
+import com.mio.netmusic.ui.theme.pages.HomePage
 import com.mio.netmusic.ui.theme.pages.MinePage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +44,7 @@ fun MainPage(outNavController: NavHostController) {
     )
     // 监听当前路由，决定底部栏选中项
     val currentBackStackEntry by innerNavController.currentBackStackEntryAsState()
-    val currentRoute = currentBackStackEntry?.destination?.route ?: Page.Mine.route
+    val currentRoute = currentBackStackEntry?.destination?.route ?: Page.Home.route
     // 计算选中索引
     val selectedIndex = bottomList.indexOfFirst { it.route == currentRoute }.takeIf { it >= 0 } ?: 0
     Scaffold(
@@ -96,15 +95,15 @@ fun HomeContent(
             .fillMaxSize()
             .padding(paddingValues)
     ) {
-        NavHost(navController = innerNavController, startDestination = Page.Mine.route) {
+        NavHost(navController = innerNavController, startDestination = Page.Home.route) {
             composable(Page.Home.route) {
-                InnerHomePage(innerNavController, outNavController)
+                HomePage(innerNavController, outNavController)
             }
             composable(Page.Favorite.route) {
-                InnerHomePage(innerNavController, outNavController)
+                HomePage(innerNavController, outNavController)
             }
             composable(Page.Message.route) {
-                InnerHomePage(innerNavController, outNavController)
+                HomePage(innerNavController, outNavController)
             }
             composable(Page.Mine.route) {
                 MinePage(innerNavController, outNavController)
