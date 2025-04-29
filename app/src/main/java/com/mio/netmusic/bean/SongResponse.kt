@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class SongResponse(
     val code: Int? = null,
     val privileges: List<Privilege?>? = null,
-    val songs: List<Song?>? = null
+    val songs: List<Song> = listOf()
 ) {
     @Serializable
     data class Privilege(
@@ -26,7 +26,7 @@ data class SongResponse(
         val flLevel: String? = null,
         val flag: Int? = null,
         val freeTrialPrivilege: FreeTrialPrivilege? = null,
-        val id: Int? = null,
+        val id: Long? = null,
         val ignoreCache: String? = null,
         val maxBrLevel: String? = null,
         val maxbr: Int? = null,
@@ -84,8 +84,8 @@ data class SongResponse(
         val fee: Int? = null,
         val ftype: Int? = null,
         val h: H? = null,
-        val hr: String? = null,
-        val id: Int? = null,
+        val hr: Hr? = null,
+        val id: Long? = null,
         val l: L? = null,
         val m: M? = null,
         val mainTitle: String? = null,
@@ -94,7 +94,7 @@ data class SongResponse(
         val mv: Int? = null,
         val name: String? = null,
         val no: Int? = null,
-        val noCopyrightRcmd: String? = null,
+        val noCopyrightRcmd: NoCopyrightRcmd? = null,
         val originCoverType: Int? = null,
         val originSongSimpleData: OriginSongSimpleData? = null,
         val pop: Int? = null,
@@ -169,7 +169,7 @@ data class SongResponse(
             val albumMeta: AlbumMeta? = null,
             val artists: List<Artist?>? = null,
             val name: String? = null,
-            val songId: Int? = null
+            val songId: Long? = null
         ) {
             @Serializable
             data class AlbumMeta(
@@ -191,6 +191,19 @@ data class SongResponse(
             val size: Int? = null,
             val sr: Int? = null,
             val vd: Int? = null
+        )
+
+        @Serializable
+        data class NoCopyrightRcmd(
+            val type: Int,
+            val typeDesc: String,
+        )
+
+        @Serializable
+        data class Hr(
+            val br: Int,
+            val fid: Int,
+            val size: Int,
         )
     }
 }

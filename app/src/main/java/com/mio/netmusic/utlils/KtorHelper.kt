@@ -7,6 +7,7 @@ import com.mio.netmusic.bean.PlayListResponse
 import com.mio.netmusic.bean.QrCheck
 import com.mio.netmusic.bean.QrImg
 import com.mio.netmusic.bean.QrKey
+import com.mio.netmusic.bean.SongResponse
 import com.mio.netmusic.ui.theme.App
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -153,6 +154,15 @@ object KtorHelper {
         url = "/user/playlist",
         params = mapOf(
             "uid" to userId.toString(),
+            "timestamp" to System.currentTimeMillis().toString(),
+            "cookie" to App.cookie.value,
+        ),
+    )
+
+    fun getSongs(songId: String) = get<SongResponse>(
+        url = "/playlist/track/all",
+        params = mapOf(
+            "id" to songId.toString(),
             "timestamp" to System.currentTimeMillis().toString(),
             "cookie" to App.cookie.value,
         ),

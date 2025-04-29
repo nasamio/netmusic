@@ -1,6 +1,7 @@
-package com.mio.netmusic.ui.theme.pages
+package com.mio.netmusic.ui.pages
 
-import androidx.compose.foundation.layout.Box
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -28,6 +29,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.mio.netmusic.bean.Playlist
 import com.mio.netmusic.ui.theme.App
+import com.mio.netmusic.ui.theme.Page
 import com.mio.netmusic.utlils.KtorHelper
 import com.mio.netmusic.utlils.isOk
 
@@ -37,7 +39,6 @@ fun HomePage(
     outNavController: NavHostController,
 ) {
     var playlist by remember { mutableStateOf(listOf<Playlist>()) }
-
 
     LaunchedEffect(Unit) {
         KtorHelper.playlist(App.profile.value!!.userId).collect {
@@ -53,16 +54,26 @@ fun HomePage(
         contentPadding = PaddingValues(10.dp)
     ) {
         items(playlist.size) {
-            PlayListItem(playlist[it])
+            val pl = playlist[it]
+            PlayListItem(pl) {
+                App.toJumpPlayList = pl
+                outNavController.navigate(Page.SongList.route)
+            }
         }
     }
 }
 
 
 @Composable
-fun PlayListItem(playlist: Playlist) {
+fun PlayListItem(
+    playlist: Playlist,
+    onClick: () -> Unit = {}
+) {
     Surface(
         shape = RoundedCornerShape(10.dp),
+        modifier = Modifier.clickable {
+            onClick()
+        }
     ) {
         Row(
             modifier = Modifier

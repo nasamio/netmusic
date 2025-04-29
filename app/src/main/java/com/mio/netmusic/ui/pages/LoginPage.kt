@@ -1,4 +1,4 @@
-package com.mio.netmusic.ui.theme.pages
+package com.mio.netmusic.ui.pages
 
 import LogUtils
 import android.graphics.BitmapFactory

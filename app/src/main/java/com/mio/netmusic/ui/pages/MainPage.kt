@@ -29,8 +29,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mio.netmusic.ui.theme.Page
-import com.mio.netmusic.ui.theme.pages.HomePage
-import com.mio.netmusic.ui.theme.pages.MinePage
+import com.mio.netmusic.ui.pages.HomePage
+import com.mio.netmusic.ui.pages.MinePage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
