@@ -2,6 +2,8 @@ package com.mio.netmusic.ui.theme
 
 import android.content.Context
 import android.widget.Toast
+import com.mio.netmusic.bean.Account
+import com.mio.netmusic.bean.Profile
 import com.mio.netmusic.utlils.SharedPreferencesHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -23,6 +25,9 @@ object App {
     val cookie = MutableStateFlow("")
 
     val isLogin = MutableStateFlow(false)
+
+    val account = MutableStateFlow<Account?>(null)
+    val profile = MutableStateFlow<Profile?>(null)
 
 
     fun initApp(context: Context) {

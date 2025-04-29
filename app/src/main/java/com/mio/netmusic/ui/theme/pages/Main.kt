@@ -5,6 +5,7 @@ import LogUtils
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,8 +40,13 @@ fun Main() {
             LogUtils.d("${it.data?.code}${it.data?.account}\n${it.data?.profile}")
 
             val hasLogin = it.code.isOk() && it.data?.account != null && it.data.profile != null
+
+            if (hasLogin) {
+                App.account.value = it.data?.account
+                App.profile.value = it.data?.profile
+                App.toast("登录成功")
+            }
             startDestination = if (hasLogin) Page.Main.route else Page.Login.route
-            if (hasLogin) App.toast("登录成功")
 
             App.isLogin.value = hasLogin
             isJudgeLogin = true
@@ -49,6 +55,7 @@ fun Main() {
 
     if (isJudgeLogin) {
         NavHost(
+            modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
             navController = navController,
             startDestination = startDestination
         ) {

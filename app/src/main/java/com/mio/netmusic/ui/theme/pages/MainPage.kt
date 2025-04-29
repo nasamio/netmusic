@@ -49,6 +49,7 @@ fun MainPage(outNavController: NavHostController) {
     // 计算选中索引
     val selectedIndex = bottomList.indexOfFirst { it.route == currentRoute }.takeIf { it >= 0 } ?: 0
     Scaffold(
+        containerColor = Color.Transparent,
         topBar = {
             AnimatedVisibility(
                 visible = selectedIndex == 0,
@@ -93,7 +94,6 @@ fun HomeContent(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray)
             .padding(paddingValues)
     ) {
         NavHost(navController = innerNavController, startDestination = Page.Mine.route) {
