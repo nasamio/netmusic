@@ -35,7 +35,6 @@ import com.mio.netmusic.ui.theme.Settings
 @Composable
 fun MinePage(
     outNavController: NavHostController? = null,
-    outNavController1: NavHostController? = null,
 ) {
     val account = App.account.value ?: return
     val profile = App.profile.value ?: return

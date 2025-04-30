@@ -35,7 +35,6 @@ import com.mio.netmusic.utlils.isOk
 
 @Composable
 fun HomePage(
-    innerNavController: NavHostController,
     outNavController: NavHostController,
 ) {
     var playlist by remember { mutableStateOf(listOf<Playlist>()) }
